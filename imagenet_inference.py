@@ -2,6 +2,8 @@ import torch
 import torchvision.transforms as transforms
 from PIL import Image
 import torchvision.models as models
+from torchvision.datasets import ImageFolder
+from torch.utils.data import DataLoader
 
 # Load a pretrained ResNet-18 model
 model = models.resnet18(pretrained=True)
@@ -17,7 +19,12 @@ transform = transforms.Compose([
         std=[0.229, 0.224, 0.225]    # ImageNet standard deviations
     )
 ])
+# Load ImageNet dataset using ImageFolder
+dataset = ImageFolder(root="imagenet-sample-images", transform=transform)
 
+# Create DataLoader for batch processing
+batch_size = 32
+dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 # Load and preprocess the input image
 image_path = "imagenet-sample-images/n01440764_tench.JPEG"
 image = Image.open(image_path)
