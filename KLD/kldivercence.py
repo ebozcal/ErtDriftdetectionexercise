@@ -13,7 +13,7 @@ from dataloader import DataLoader
 
 #logging.basicConfig(filename='my_log_file.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 loader = DataLoader()
-train_loader, test_loader = loader.load('imagenet-mini/val')
+train_loader, test_loader = loader.load('/content/drive/My Drive/001_Shell/0001_drift_detection/val')
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = torchvision.models.resnet50(pretrained=True)
 model = nn.Sequential(*list(model.children())[:-1])
