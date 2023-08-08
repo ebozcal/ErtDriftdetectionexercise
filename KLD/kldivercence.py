@@ -81,7 +81,7 @@ def calculate_KLD_for_newdata(unique_labels_new, embeddings_train, embeddings_ne
         embedding_new_label = embeddings_new[mask_new]
         embedding_train_label = embeddings_train[mask_train]
         for i in range(embedding_new_label.shape[0]):
-            for j in embedding_train_label.shape[0]:
+            for j in range(embedding_train_label.shape[0]):
                 try:
                     kl = kl_divergence_loss(embedding_new_label[i], embedding_train_label[j])
                     if float("inf") > kl > 0 and kl > KLD_train[label]:
